@@ -1,0 +1,8 @@
+&CMD_+BUILD #49=$^\+build/(owned|transfer|tonexus|togrid|setic|setooc|nodesc|lostrooms|lostexits|unzoned|alldescs|setgauntlet|getgauntlet|inspect|reality|setbanality)( [-'_*a-z =A-Z0-9#]+)?$:@assert or(isstaffer(%#),isdirector(%#),isproducer(%#),!isquarantined(%#),!hasflag(%#,GUEST),!hasflag(%#,wanderer))={@pemit %#=[cmdmsg(+build,You cannot use this command! (Is your character approved?))]};@include #includes-architect/INC_+build_%1;
+
+&INC_+BUILD_setbanality #33=@assert or(isstaffer(%#),and(strmatch(%#,owner(%l)),hastype(%l,ROOM),hasflag(%l,OOCAREA)),and(isdirector(%#),canmanage(owner(%l))))={@pemit %#=[cmdmsg(+build,Sorry\, you may only set the banality rating on rooms you own that are in the OOC AREA, or that you can manage.)]};@assert and(gte(trim(%2),1),lte(trim(%2),10))={@pemit %#=[cmdmsg(+build,The banality rating needs to be between %xc1%xn and %xc10%xn!)]};&sys_banalityrating %l=[trim(%2)];@pemit %#=[cmdmsg(+build,You set the banality rating of %xy[name(%l)]%xn to %xc[trim(%2)]%xn.)]
+
+&sys_banalityrating #45=6
+
+&DREAMINGDESCFORMAT #45=%R[center(ansi(hc,--Dreaming Desc--),78)][if(match(lcstr(txlevel(me)), real), %r[center(ansi(hc,==Ambient Banality: [u(SYS_BANALITYRATING)]==),78)])]%r%r[wrap(%t%0,78)]%xn[if(show_realdesc(%#),if(and(hasattr(me,dreamingdesc),hasattr(me,desc)),%R%R[center(-- Real Desc --,78)]%R[printf($|"#8#-78s,[if(and(!hasattr(%#/noprefix),!hasattr(%#/noprefix)),%R%T)][u(desc)])]))]%R
+
