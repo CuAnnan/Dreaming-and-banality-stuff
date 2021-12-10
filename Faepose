@@ -1,0 +1,7 @@
+@create fae_pose_container=10
+&CMD.FAEPOSE fae_pose_container=$^\+(faepose|fpose|fp) (.+)$:@assert [u(can_see_fae, %#)]={@pemit %#=[cmdmsg(+faepose,Sorry\, you can't use this command.)]};@pemit/list/oneeval setr(players, iter(lcon(%L/player),if(and(visibleto(%#,##), u(can_see_fae, ##)),##,)))=%xh<Fae> %xn%n %2
+@set fae_pose_container/CMD.FAEPOSE = regexp
+&CAN_SEE_FAE fae_pose_container=[and(match(lcstr(rxlevel(%0)),chimera),match(lcstr(txlevel(%0)),chimera))]
+&CMD.FAEEMIT fae_pose_container=$^\+(fe|faeemit|femit) (.+)$:@assert [u(can_see_fae, %#)]={@pemit %#=[cmdmsg(+faepose,Sorry\, you can't use this command.)]};@pemit/list/oneeval setr(players, iter(lcon(%L/player),if(and(visibleto(%#,##), u(can_see_fae, ##)),##,)))=%xh<Fae>%xn %2
+@set fae_pose_container/CMD.FAEEMIT = regexp
+@set fae_pose_container=INHERIT
