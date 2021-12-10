@@ -9,4 +9,4 @@
 &CAN_SEE_FAE_IN_ROOM fae_pose_container=[iter(lcon(%L/CONNECT),if(and(visibleto(%#,##), u(can_see_fae, ##)),##,))]
 @rxlevel fae_pose_container=Real
 @txlevel fae_pose_container=Real Admin Chimera Wraith
-@set fae_pose_container=SAFE INHERIT
+@set fae_pose_container=SAFE INHERIT !NO_COMMAND
